@@ -1,13 +1,8 @@
 words = File.read('google-10000-english-no-swears.txt').split
 
 def four_letter_words(words)
-    words.map do |word|
-        if word.length < 4
-            next
-        else
-            word
-        end
-    end
+	new_words = words.map{|word| word unless word.length < 4}.uniq
+	new_words.delete_at(0)
+	new_words
 end
-
 p four_letter_words(words)
