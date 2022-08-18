@@ -6,10 +6,16 @@ def four_letter_words(words)
 	new_words
 end
 
-
 def get_random_word(words)
   length = four_letter_words(words).length
   four_letter_words(words)[rand(0..length)]
 end
 
-p get_random_word(words)
+def display_word(words)
+	selected_word = get_random_word(words)
+	#puts selected_word
+	display_word = Array.new(selected_word.length,"_")
+	puts display_word.join("")
+end
+
+display_word(words)
