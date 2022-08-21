@@ -49,17 +49,31 @@ class GetWord
 		if @selected_word.include?(@guessed_letter)
 			#puts "corrrect"
 			@selected_word.split("").each_with_index {|letter, index| @display_word[index] = @guessed_letter unless letter != @guessed_letter}
+			puts ""
 			self.display
 		else
 			#puts"incorrect"
 			@incorrected_guesses << @guessed_letter
+			puts ""
 			self.display
 		end
+	end
+
+	def play_game
+		self.selected_word
+		self.display
+		while @display_word.include?("_")
+			self.compare_guess
+			if @incorrected_guesses.length > 6
+				break
+			end
+		end
+		puts "thank you for playing"
 	end
 end
 
 game = GetWord.new(words)
 #game.get_random_word
-game.selected_word
-game.display
-game.compare_guess
+# game.selected_word
+# game.display
+game.play_game
