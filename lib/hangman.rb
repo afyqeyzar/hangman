@@ -42,16 +42,20 @@ class GetWord
 	def get_guess
 		puts "guess a letter: "
 		@guessed_letter = gets.chomp
-		if @guessed_letter.length != 1
-			puts "please enter only one letter"
-			self.get_guess
-		end
+		# if @guessed_letter.length != 1 or @guessed_letter != 'save' or @guessed_letter != 'exit'
+		# 	puts "please enter only one letter"
+		# 	self.get_guess
+		# end
 	end
 
 	def compare_guess
 		self.get_guess
 		#p @guessed_letter
-		if @selected_word.include?(@guessed_letter)
+		if @guessed_letter == 'save'
+			save_game
+		elsif @guessed_letter == 'exit'
+			exit
+		elsif @selected_word.include?(@guessed_letter)
 			#puts "corrrect"
 			@selected_word.split("").each_with_index {|letter, index| @display_word[index] = @guessed_letter unless letter != @guessed_letter}
 			puts ""
