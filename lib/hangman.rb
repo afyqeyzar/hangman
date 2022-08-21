@@ -3,6 +3,7 @@ words = File.read('google-10000-english-no-swears.txt').split
 class GetWord
 	def initialize(words)
 		@words = words
+		@incorrected_guesses = []
 	end
 
 	def four_letter_words
@@ -26,6 +27,25 @@ class GetWord
 
 	def display
 		puts @display_word.join("")
+		puts "incorect guesses: " + @incorrected_guesses.join("")
+	end
+
+	def get_guess
+		puts "guess a letter: "
+		@guessed_letter = gets.chomp
+	end
+
+	def compare_guess
+		self.get_guess
+		#p @guessed_letter
+		if @selected_word.include?(@guessed_letter)
+			#puts "corrrect"
+			@selected_word.split("").each_with_index {|letter, index| @display_word[index] = @guessed_letter unless letter != @guessed_letter}
+			self.display()
+		else
+			#puts"incorrect"
+			@incorrected_guesses << @guessed_letter
+		end
 	end
 end
 
@@ -33,3 +53,4 @@ game = GetWord.new(words)
 #game.get_random_word
 game.selected_word
 game.display
+game.compare_guess
