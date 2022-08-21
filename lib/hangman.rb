@@ -1,13 +1,18 @@
+require "./lib/save_game.rb"
+require "yaml"
+
 words = File.read('google-10000-english-no-swears.txt').split
 
 
 class GetWord
+	include SaveGame
 	attr_reader :words, :incorrected_guesses, :selected_word_index
 
-	def initialize(words, selected_word_index = rand(0..8810), incorrected_guesses = [])
+	def initialize(words, selected_word_index = rand(0..8810), incorrected_guesses = [], display_word = [])
 		@words = words
 		@incorrected_guesses = incorrected_guesses
 		@selected_word_index = selected_word_index
+		@display_word = display_word 
 	end
 
 	def four_letter_words
@@ -20,7 +25,7 @@ class GetWord
 		self.four_letter_words
 		@length = @new_words.length
 		@selected_word = @new_words[@selected_word_index]
-		p @length
+		#p @length
 	end
 
 	def selected_word
@@ -72,8 +77,7 @@ class GetWord
 	end
 end
 
+
+
 game = GetWord.new(words)
-#game.get_random_word
-# game.selected_word
-# game.display
 game.play_game
