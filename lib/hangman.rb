@@ -1,9 +1,13 @@
 words = File.read('google-10000-english-no-swears.txt').split
 
+
 class GetWord
-	def initialize(words)
+	attr_reader :words, :incorrected_guesses, :selected_word_index
+
+	def initialize(words, selected_word_index = rand(0..8810), incorrected_guesses = [])
 		@words = words
-		@incorrected_guesses = []
+		@incorrected_guesses = incorrected_guesses
+		@selected_word_index = selected_word_index
 	end
 
 	def four_letter_words
@@ -15,14 +19,14 @@ class GetWord
 	def get_random_word
 		self.four_letter_words
 		@length = @new_words.length
-		@selected_word = @new_words[rand(0..@length)]
+		@selected_word = @new_words[@selected_word_index]
+		p @length
 	end
 
 	def selected_word
 		self.get_random_word
 		puts @selected_word
 		@display_word = Array.new(@selected_word.length,"_")
-		#p @display_word
 	end
 
 	def display
