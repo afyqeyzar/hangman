@@ -86,7 +86,11 @@ class GetWord
 		if @initial_entry == "new"
 			play_new_game
 		elsif @initial_entry == "load"
-			p 'load'
+			file_list
+			puts "pls enter a save ud like to play"
+			@saved_game = gets.chomp
+			load_saved_file
+			play_new_game
 		end
 	end
 end
