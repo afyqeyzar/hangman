@@ -31,7 +31,7 @@ class GetWord
 	def selected_word
 		self.get_random_word
 		puts @selected_word
-		@display_word = Array.new(@selected_word.length,"_")
+		#@display_word = Array.new(@selected_word.length,"_")
 	end
 
 	def display
