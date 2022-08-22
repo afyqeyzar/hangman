@@ -33,13 +33,13 @@ module SaveGame
   #   end
   # end
 
-  # def file_list
-  #   files = []
-  #   Dir.entries('output').each do |name|
-  #     files << name if name.match(/(game)/)
-  #   end
-  #   files
-  # end
+  def file_list
+    files = []
+    Dir.entries('save_file').each do |name|
+      files << name if name.match(/(game)/)
+    end
+    p files
+  end
 
   # def load_game
   #   find_saved_file
@@ -51,12 +51,12 @@ module SaveGame
   #   puts display_load_error
   # end
 
-  # def load_saved_file
-  #   file = YAML.safe_load(File.read("output/#{@saved_game}"))
-  #   @word = file['word']
-  #   @solution = word.split(//)
-  #   @available_letters = file['available_letters']
-  #   @solved_letters = file['solved_letters']
-  #   @incorrect_letters = file['incorrect_letters']
-  # end
+  def load_saved_file
+    file = YAML.safe_load(File.read("save_file/#{@saved_game}"))
+    @selected_word_index = file['word_index']
+    #@solution = word.split(//)
+    #@available_letters = file['available_letters']
+    @display_word = file['display_word']
+    @incorrected_guesses = file['incorrect_letters']
+  end
 end

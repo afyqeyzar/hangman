@@ -68,7 +68,7 @@ class GetWord
 		end
 	end
 
-	def play_game
+	def play_new_game
 		self.selected_word
 		self.display
 		while @display_word.include?("_")
@@ -79,9 +79,20 @@ class GetWord
 		end
 		puts "thank you for playing"
 	end
+
+	def play_game
+		puts "type new to play new game or load to load a game"
+		@initial_entry = gets.chomp
+		if @initial_entry == "new"
+			play_new_game
+		elsif @initial_entry == "load"
+			p 'load'
+		end
+	end
 end
 
 
 
 game = GetWord.new(words)
 game.play_game
+#p game.file_list
